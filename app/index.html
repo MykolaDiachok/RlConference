@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Конференція- "В мене є ZTE!"</title>
+
+    <!--build:css css/styles.min.css-->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/pe-media-icons.css">
+    <link rel="stylesheet" href="styles/registation.css">
+    <!--endbuild-->
+
+    <!--build:css css/vendor.min.css-->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../node_modules/angular-material/angular-material.min.css">
+    <!--endbuild-->
+
+</head>
+<body ng-app="regapp">
+<!-- ZTE Axon 7  -->
+<div id="branding"></div>
+<!-- / ZTE Axon 7  -->
+
+<div class="wrapper">
+    <div class="container">
+        <div class="reg-page" ng-controller="UserRegCtrl as crtl">
+
+
+            <form name="RegForm" class="form-horizontal" ng-if="visibleCtrl" ng-cloak>
+
+                <div id="header" class="stickyeah" data-stickyeah-offset="0">
+                    <img class='mobnone' src="assets/img/zte-logo.png" border="0" style="padding-left: 30px;"/> <span
+                        class='menu'><a href="#anchor1">Мета</a> &nbsp;&nbsp; <a href="#anchor2">Доповідачі</a> &nbsp;&nbsp; <a
+                        href="#anchor3">Розклад</a> &nbsp;&nbsp; <a href="#anchor4">Реєстрація</a> &nbsp;&nbsp; <a
+                        href="#anchor5">Контакти</a></span>
+                    <!--/ Конец фиксации верхнего меню -->
+                </div>
+
+                <div id="Head" class="reg-windows">
+                    <div class="reg-header__info">
+                        <h1>Конференція - "В мене є <span style="color: #59c0ff;">ZTE</span> !"</h1>
+                        <h2>Дніпро, вул. Троїцька, 12А, готель Reikartz </h2>
+                        <h1>25.10.2016 / 12:00</h1>
+                        <div style=" text-align: center; "><a name="anchor1"></a><a href="#anchor4" type="buton"
+                                                                                    class="buton2">ЗАРЕЄСТРУВАТИСЯ</a>
+                        </div>
+                    </div>
+
+                    <div class="reg-body">
+                        <div class="form-group reg-body__username">
+                            <label for="InputUserName" class="control-label col-sm-3">ПІБ:</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="InputUserName" class="form-control" name="UserName"
+                                       placeholder="Прізвище ім'я по-батькові"
+                                       ng-model="user.fullname" required>
+                                <div class="help-block" ng-messages="RegForm.UserName.$error">
+                                    <p ng-message="required">Прізвище, ім'я та по-батькові необхідно заповнити.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group reg-body__company">
+                            <label for="InputUserCompany" class="control-label col-sm-3">Компанія:</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="InputUserCompany" class="form-control" ng-model="user.company"
+                                       name="UserCompany" placeholder="Назва компанії" required>
+                                <div class="help-block" ng-messages="RegForm.UserCompany.$error">
+                                    <p ng-message="required">Назву компанії необхідно заповнити.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group reg-body__email">
+                            <label for="InputUserEmail" class="control-label col-sm-3"
+                                   class="control-label col-xs-2">E-mail:</label>
+                            <div class="col-sm-9">
+                                <input type="email" id="InputUserEmail" class="form-control" ng-model="user.email"
+                                       name="UserEmail" required>
+                                <div class="help-block" ng-messages="RegForm.UserEmail.$error">
+                                    <p ng-message="required">Поле email необхідно заповнити.</p>
+                                    <p ng-message="email">Введіть коректну email адресу.</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group reg-body__tel">
+                            <label for="InputUserTel" class="control-label col-sm-3">Телефон:</label>
+                            <div class="col-sm-9">
+                                <input type="tel" id="InputUserTel" class="form-control" ng-model="user.tel"
+                                       name="UserPhone"
+                                       placeholder="Введіть телефон" ng-required="true" ui-mask="+38(999)999-99-99"
+                                       ui-mask-placeholder ui-mask-placeholder-char="_">
+                                <div class="help-block" ng-messages="RegForm.UserPhone.$error">
+                                    <p ng-message="required"># телефону необхідно заповнити.</p>
+                                    <p ng-message="pattern"># телефону не вірний.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group reg-body__position">
+                            <label for="InputUserPosition" class="control-label col-sm-3">Посада:</label>
+                            <div class="col-sm-9">
+
+                                <select class="form-control with-search " id="InputUserPosition" select-picker
+                                        data-live-search="true" name="UserPosition"
+                                        title="Виберіть вашу посаду" ng-model="selectedPosition"
+                                        ng-options="c.Name for c in positions" required>
+                                </select>
+                                <div class="help-block" ng-messages="RegForm.UserPosition.$error">
+                                    <p ng-message="required">Посаду необхідно заповнити.</p>
+                                </div>
+                                <!--{{selectedPosition}}-->
+                            </div>
+                        </div>
+
+                        <div class="form-group reg-body__place">
+                            <label for="InputUserPlace" class="control-label col-sm-3">Звідки Ви?:</label>
+                            <div class="col-sm-9">
+
+                                <select class="form-control with-search " id="InputUserPlace" select-picker
+                                        data-live-search="true" name="UserPosition"
+                                        title="Виберіть ваш населений пункт" ng-model="selectedPosition"
+                                        ng-options="c.Settlement for c in places" required>
+                                </select>
+                                <div class="help-block" ng-messages="RegForm.UserPosition.$error">
+                                    <p ng-message="required">Місце знаходження необхідно заповнити.</p>
+                                </div>
+                                <!--{{selectedPosition}}-->
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="reg-footer">
+                        <div class="col-xs-offset-2 col-sm-9">
+                            <button type="submit" class="btn btn-primary">Регистрация</button>
+                        </div>
+
+                        <br><br>
+                        <h2><span class="pe-mi-ways blue2"></span> &nbsp; <a name="anchor" class='blue2'>Де і коли?</a>
+                        </h2>
+                        <p>25.10.2016 / 12:00 м. ДНІПРО, вул. ТРОЇЦЬКА, 12А, ГОТЕЛЬ REIKARTZ</p>
+                        <p>ДОВІДКИ ЗА ТЕЛЕФОНОМ: +38 (067) 327 6 237, АБО У ВАШОГО МЕНЕДЖЕРА "RadioLine"</p>
+                    </div>
+                </div>
+
+                <div class='brown' style=" height: 2px; max-width: 980px; margin: auto;"></div>
+                <div id="footer">
+                    <!-- Информер погоды города Х-->
+                    <div id="cont_db6ea766d3a210870ab91febc43df63d">
+                        <script type="text/javascript" async
+                                src="https://www.pogoda.com/wid_loader/db6ea766d3a210870ab91febc43df63d"></script>
+                    </div>
+                    <!-- / Конец информера погоды города Х-->
+
+                    <!-- Карта Google -->
+                    <iframe class="entry_preview_image transparent"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2645.8170556624586!2d35.03913501601699!3d48.46003957925047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9ee939c4c07ea33f!2zUmVpa2FydHog0JTQvdC10L_RgA!5e0!3m2!1sru!2sua!4v1476556159882"
+                            width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <!-- Карта Google -->
+                    <br>
+                    <b>RadioLine © 2016 &nbsp; +38 (067) 327 6 237</b>
+                    <br>
+                </div>
+
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!--build:js js/vendor.min.js -->
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../node_modules/tether/dist/js/tether.min.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="../node_modules/angular/angular.min.js"></script>
+<script src="../node_modules/angular-messages/angular-messages.min.js"></script>
+<script src="../node_modules/angular-ui-mask/dist/mask.min.js"></script>
+<script src="../node_modules/angular-route/angular-route.min.js"></script>
+<script src="../node_modules/angular-aria/angular-aria.min.js"></script>
+<script src="../node_modules/angular-animate/angular-animate.min.js"></script>
+<script src="../node_modules/angular-material/angular-material.min.js"></script>
+<!-- Firebase -->
+<script src="../node_modules/firebase/firebase.js"></script>
+<!-- AngularFire -->
+<script src="../node_modules/angularfire/dist/angularfire.min.js"></script>
+<!-- endbuild -->
+
+<!--build:js js/main.min.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/stickyeah.js"></script>
+<!-- endbuild -->
+</body>
+</html>
+
