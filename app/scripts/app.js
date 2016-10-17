@@ -14,6 +14,7 @@
     firebase.initializeApp(config);
 
 
+
     angular
         .module('regapp', ['ngMessages', 'firebase', 'ui.mask', 'ngMaterial'])
         .factory("Auth", ["$firebaseAuth",

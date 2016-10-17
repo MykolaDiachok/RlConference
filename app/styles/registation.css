@@ -1,38 +1,38 @@
 ﻿/* Код для подключения шрифта в /css/stylename.css */
-/* font-family: "OpenSansCondensedLight"; */
+/* fonts-family: "OpenSansCondensedLight"; */
 @font-face {
     font-family: "OpenSansCondensedLight";
-    src: url("../assets/fonts/OSCLight/OpenSansCondensedLight.eot");
-    src: url("../assets/fonts/OSCLight/OpenSansCondensedLight.eot?#iefix")format("embedded-opentype"),
-    url("../assets/fonts/OSCLight/OpenSansCondensedLight.woff") format("woff"),
-    url("../assets/fonts/OSCLight/OpenSansCondensedLight.ttf") format("truetype");
+    src: url("../fonts/OSCLight/OpenSansCondensedLight.eot");
+    src: url("../fonts/OSCLight/OpenSansCondensedLight.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/OSCLight/OpenSansCondensedLight.woff") format("woff"),
+    url("../fonts/OSCLight/OpenSansCondensedLight.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
 }
-/* font-family: "OSCLightItalic"; */
+/* fonts-family: "OSCLightItalic"; */
 @font-face {
     font-family: "OSCLightItalic";
-    src: url("../assets/fonts/OSCLightItalic/OpenSansCondensedLightItalic.eot");
-    src: url("../assets/fonts/OSCLightItalic/OpenSansCondensedLightItalic.eot?#iefix")format("embedded-opentype"),
-    url("../assets/fonts/OSCLightItalic/OpenSansCondensedLightItalic.woff") format("woff"),
-    url("../assets/fonts/OSCLightItalic/OpenSansCondensedLightItalic.ttf") format("truetype");
+    src: url("../fonts/OSCLightItalic/OpenSansCondensedLightItalic.eot");
+    src: url("../fonts/OSCLightItalic/OpenSansCondensedLightItalic.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/OSCLightItalic/OpenSansCondensedLightItalic.woff") format("woff"),
+    url("../fonts/OSCLightItalic/OpenSansCondensedLightItalic.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
 }
-/* font-family: "OpenSansCondensedBold"; */
+/* fonts-family: "OpenSansCondensedBold"; */
 @font-face {
     font-family: "OpenSansCondensedBold";
-    src: url("../assets/fonts/OSCBold/OpenSansCondensedBold.eot");
-    src: url("../assets/fonts/OSCBold/OpenSansCondensedBold.eot?#iefix")format("embedded-opentype"),
-    url("../assets/fonts/OSCBold/OpenSansCondensedBold.woff") format("woff"),
-    url("../assets/fonts/OSCBold/OpenSansCondensedBold.ttf") format("truetype");
+    src: url("../fonts/OSCBold/OpenSansCondensedBold.eot");
+    src: url("../fonts/OSCBold/OpenSansCondensedBold.eot?#iefix")format("embedded-opentype"),
+    url("../fonts/OSCBold/OpenSansCondensedBold.woff") format("woff"),
+    url("../fonts/OSCBold/OpenSansCondensedBold.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
 }
 
  
 body  {
-background-image: url(../assets/img/bgr1.png);
+background-image: url(../images/bgr1.png);
 font-family: 'OpenSansCondensedLight', sans-serif;	
 }    
     
@@ -79,14 +79,14 @@ font-size: 1.4em;
 color: #5b5b5b;	
     }       
     
-#form {
+#form-zte {
 padding-left: 25px;
     padding-right: 20px;
     padding-top: 10px;
     padding-bottom: 1px;
     box-shadow: 0 1px 22px rgba(0,0,0,0.1);
     background-color: #f9f9f9;
-    max-width: 935px!important;
+    max-width: 980px!important;
     margin: auto;	
     }    
  
@@ -160,9 +160,9 @@ float: left;
 
 
 
-.wrapper{
+.wrapper-zte{
     width: 100%;
-padding-top: 78px;
+padding-top: 85px;
 position: relative;
     margin: 0 auto;
     top: 0;
@@ -172,10 +172,10 @@ position: relative;
 #branding{
 width: 100%;
     left: 0px;
-    top: 0px;
+    /*top: 0px;*/
     position: fixed;
     height: 100%;
-    background-image: url(../assets/img/AXON.png);
+    background-image: url(../images/AXON.png);
     background-position: 50% 0%;
     background-repeat: no-repeat;
     background-attachment: initial;
@@ -217,7 +217,7 @@ padding-right: 20px;
 
 #Head {
 color: #fff;	
-background-image: url(../assets/img/conference.jpg);
+background-image: url(../images/conference.jpg);
 background-size: cover;
 background-position: bottom center;
 background-repeat: no-repeat;
@@ -251,12 +251,12 @@ margin: auto;
 }
     
 
-#footer{
+#footer-zte{
     background: #fff;
 box-shadow: 0 9px 20px 0px rgba(0,0,0,0.1);
     text-align: center;
     padding-top: 0px;
-    max-width: 910px;
+    max-width: 980px;
     margin: auto;
     padding-right: 35px;
     padding-left: 35px;

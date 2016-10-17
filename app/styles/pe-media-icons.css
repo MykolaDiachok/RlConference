@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'Pe-media-icons';
-	src:url('../assets/fonts/Pe-media-icons.eot?cuewis');
-	src:url('../assets/fonts/Pe-media-icons.eot?#iefixcuewis') format('embedded-opentype'),
-		url('../assets/fonts/Pe-media-icons.woff?cuewis') format('woff'),
-		url('../assets/fonts/Pe-media-icons.ttf?cuewis') format('truetype'),
-		url('../assets/fonts/Pe-media-icons.svg?cuewis#Pe-media-icons') format('svg');
+	src:url('../fonts/Pe-media-icons.eot?cuewis');
+	src:url('../fonts/Pe-media-icons.eot?#iefixcuewis') format('embedded-opentype'),
+		url('../fonts/Pe-media-icons.woff?cuewis') format('woff'),
+		url('../fonts/Pe-media-icons.ttf?cuewis') format('truetype'),
+		url('../fonts/Pe-media-icons.svg?cuewis#Pe-media-icons') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }

@@ -8,7 +8,6 @@
     <title>Конференція- "В мене є ZTE!"</title>
 
 
-
     <!--build:css css/vendor.min.css-->
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
@@ -24,23 +23,52 @@
 </head>
 <body ng-app="regapp">
 <!-- ZTE Axon 7  -->
-<div id="branding"></div>
+<nav class="navbar navbar-default divide-nav navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <img alt="Brand" src="images/zte-logo.png">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav menu">
+                <li><a href="#anchor1">Мета</a></li>
+                <li><a href="#anchor2">Доповідачі</a></li>
+                <li><a href="#anchor3">Розклад</a></li>
+                <li><a href="#anchor4">Реєстрація</a></li>
+                <li><a href="#anchor5">Контакти</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--<nav class="navbar navbar-default divide-nav navbar-fixed-top" role="navigation">-->
+<!--<div class="container">-->
+<!--<div class="collapse navbar-collapse collapse-buttons">-->
+<!--<form class="navbar-form navbar-left" role="search">-->
+<!--<images class='mobnone' src="assets/images/zte-logo.png" border="0"-->
+<!--style="padding-left: 30px;"/>-->
+<!--<span class='menu'>-->
+<!--<a href="#anchor1">Мета</a> &nbsp;&nbsp;-->
+<!--<a href="#anchor2">Доповідачі</a> &nbsp;&nbsp;-->
+<!--<a href="#anchor3">Розклад</a> &nbsp;&nbsp;-->
+<!--<a href="#anchor4">Реєстрація</a> &nbsp;&nbsp;-->
+<!--<a href="#anchor5">Контакти</a></span>-->
+<!--&lt;!&ndash;/ Конец фиксации верхнего меню &ndash;&gt;-->
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
+<!--</nav>-->
 <!-- / ZTE Axon 7  -->
 
-<div class="wrapper">
+<div class="wrapper-zte">
     <div class="container">
         <div class="reg-page" ng-controller="UserRegCtrl as crtl">
 
 
             <form name="RegForm" class="form-horizontal" ng-if="visibleCtrl" ng-cloak>
-
-                <div id="header" class="stickyeah" data-stickyeah-offset="0">
-                    <img class='mobnone' src="assets/img/zte-logo.png" border="0" style="padding-left: 30px;"/> <span
-                        class='menu'><a href="#anchor1">Мета</a> &nbsp;&nbsp; <a href="#anchor2">Доповідачі</a> &nbsp;&nbsp; <a
-                        href="#anchor3">Розклад</a> &nbsp;&nbsp; <a href="#anchor4">Реєстрація</a> &nbsp;&nbsp; <a
-                        href="#anchor5">Контакти</a></span>
-                    <!--/ Конец фиксации верхнего меню -->
-                </div>
+                <!--<nav class="navbar-lower">-->
+                <!--<div class="container" id="branding"></div>-->
+                <!--</nav>-->
 
                 <div id="Head" class="reg-windows">
                     <div class="reg-header__info">
@@ -55,7 +83,7 @@
 
                 <!--начало мои формы-->
                 <div id="content" class="reg-body">
-                    <div id="form">
+                    <div id="form-zte">
 
                         <h2 class='blue2'><span class="pe-mi-speaker-1 blue2"></span> &nbsp; ZTE та Radioline
                             презентують</h2>
@@ -86,7 +114,7 @@
                         <div style="display: table; margin: 0 auto; text-align: center;">
                             <div class="speaker-col">
                                 <div class="speaker-info">
-                                    <div class="speaker-photo"><img src="assets/img/speaker-01.jpg" border="0" alt=""/>
+                                    <div class="speaker-photo"><img src="images/speaker-01.jpg" border="0" alt=""/>
                                     </div>
                                     <div class="speaker-contacts"></div>
                                     <h3>Доніч Максим</h3>
@@ -94,15 +122,7 @@
                             </div>
                             <div class="speaker-col">
                                 <div class="speaker-info">
-                                    <div class="speaker-photo"><img src="assets/img/speaker-02.jpg" border="0" alt=""/>
-                                    </div>
-                                    <div class="speaker-contacts"></div>
-                                    <h3>Радченко Володимир</h3>
-                                    <p class="speaker-contacts">Керівник напрямку ZTE (Radioline)</p></div>
-                            </div>
-                            <div class="speaker-col">
-                                <div class="speaker-info">
-                                    <div class="speaker-photo"><img src="assets/img//speaker-03.jpg" border="0" alt=""/>
+                                    <div class="speaker-photo"><img src="images//speaker-03.jpg" border="0" alt=""/>
                                     </div>
                                     <div class="speaker-contacts"></div>
                                     <h3>Каверін Юрій</h3>
@@ -110,7 +130,15 @@
                             </div>
                             <div class="speaker-col">
                                 <div class="speaker-info">
-                                    <div class="speaker-photo"><img src="assets/img/speaker-04.jpg" border="0" alt=""/>
+                                    <div class="speaker-photo"><img src="images/speaker-02.jpg" border="0" alt=""/>
+                                    </div>
+                                    <div class="speaker-contacts"></div>
+                                    <h3>Радченко Володимир</h3>
+                                    <p class="speaker-contacts">Керівник напрямку ZTE (Radioline)</p></div>
+                            </div>
+                            <div class="speaker-col">
+                                <div class="speaker-info">
+                                    <div class="speaker-photo"><img src="images/speaker-04.jpg" border="0" alt=""/>
                                     </div>
                                     <div class="speaker-contacts"></div>
                                     <h3>Гаєвський Михайло</h3>
@@ -140,6 +168,7 @@
 
 
                         <div style="text-align: center;">
+
                             <div class="form-group reg-body__username">
                                 <label for="InputUserName" class="control-label col-sm-3">ПІБ:</label>
                                 <div class="col-sm-9">
@@ -223,14 +252,23 @@
                                     <!--{{selectedPosition}}-->
                                 </div>
                             </div>
+
+                            <div class="col-xs-offset-2 col-sm-9">
+                                <button type="submit" class="btn btn-primary">Регистрация</button>
+                            </div>
                         </div>
+                        <br><br>
+                        <h2><span class="pe-mi-ways blue2"></span> &nbsp; <a name="anchor" class='blue2'>Де і коли?</a>
+                        </h2>
+                        <p>25.10.2016 / 12:00 м. ДНІПРО, вул. ТРОЇЦЬКА, 12А, ГОТЕЛЬ REIKARTZ</p>
+                        <p>ДОВІДКИ ЗА ТЕЛЕФОНОМ: +38 (067) 327 6 237, АБО У ВАШОГО МЕНЕДЖЕРА "RadioLine"</p>
                     </div>
                 </div>
 
-                <div id="footer" class="reg-footer">
-                    <div class="col-xs-offset-2 col-sm-9">
-                        <button type="submit" class="btn btn-primary">Регистрация</button>
-                    </div>
+                <div class='brown' style=" height: 2px; max-width: 980px; margin: auto;"></div>
+
+                <div id="footer-zte" class="reg-footer">
+
 
                     <!-- Информер погоды города Х-->
                     <div id="cont_db6ea766d3a210870ab91febc43df63d">
@@ -276,8 +314,9 @@
 
 <!--build:js js/main.min.js -->
 <script src="scripts/app.js"></script>
-<script src="scripts/stickyeah.js"></script>
+<!--<script src="scripts/stickyeah.js"></script>-->
 <!-- endbuild -->
-</body>
-</html>
+
+</body >
+< / html >
 

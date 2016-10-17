@@ -34,14 +34,19 @@ gulp.task('useref', function(){
 });
 
 gulp.task('images', function(){
-    return gulp.src('app/assets/img/**/*.+(png|jpg|gif|svg)')
+    return gulp.src('app/images/**/*.+(png|jpg|gif|svg)')
         .pipe(imagemin())
         .pipe(gulp.dest('public/images'))
 });
+
+gulp.task('fonts', function() {
+    return gulp.src('app/fonts/**/*')
+        .pipe(gulp.dest('public/fonts'))
+})
 
 gulp.task('clean:dist', function() {
     return del.sync('public');
 })
 
-gulp.task('default',['useref'],function(){
+gulp.task('default',['useref','images','fonts'],function(){
 });
