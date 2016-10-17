@@ -7,16 +7,18 @@
 
     <title>Конференція- "В мене є ZTE!"</title>
 
-    <!--build:css css/styles.min.css-->
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/pe-media-icons.css">
-    <link rel="stylesheet" href="styles/registation.css">
-    <!--endbuild-->
+
 
     <!--build:css css/vendor.min.css-->
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="../node_modules/angular-material/angular-material.min.css">
+    <!--endbuild-->
+
+    <!--build:css css/styles.min.css-->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/pe-media-icons.css">
+    <link rel="stylesheet" href="styles/registation.css">
     <!--endbuild-->
 
 </head>
@@ -49,109 +51,187 @@
                                                                                     class="buton2">ЗАРЕЄСТРУВАТИСЯ</a>
                         </div>
                     </div>
+                </div>
 
-                    <div class="reg-body">
-                        <div class="form-group reg-body__username">
-                            <label for="InputUserName" class="control-label col-sm-3">ПІБ:</label>
-                            <div class="col-sm-9">
-                                <input type="text" id="InputUserName" class="form-control" name="UserName"
-                                       placeholder="Прізвище ім'я по-батькові"
-                                       ng-model="user.fullname" required>
-                                <div class="help-block" ng-messages="RegForm.UserName.$error">
-                                    <p ng-message="required">Прізвище, ім'я та по-батькові необхідно заповнити.</p>
-                                </div>
-                            </div>
-                        </div>
+                <!--начало мои формы-->
+                <div id="content" class="reg-body">
+                    <div id="form">
 
-                        <div class="form-group reg-body__company">
-                            <label for="InputUserCompany" class="control-label col-sm-3">Компанія:</label>
-                            <div class="col-sm-9">
-                                <input type="text" id="InputUserCompany" class="form-control" ng-model="user.company"
-                                       name="UserCompany" placeholder="Назва компанії" required>
-                                <div class="help-block" ng-messages="RegForm.UserCompany.$error">
-                                    <p ng-message="required">Назву компанії необхідно заповнити.</p>
-                                </div>
-                            </div>
-                        </div>
+                        <h2 class='blue2'><span class="pe-mi-speaker-1 blue2"></span> &nbsp; ZTE та Radioline
+                            презентують</h2>
+                        <p> Уважаемый партнер!
+                            Компания RadioLine, эксклюзивный дистрибьютор смартфонов ZTE в канале независимой розницы,
+                            приглашает
+                            Вас на презентацию-конференцию мирового мобильного бренда ZTE, который будет проводиться
+                            «_дата_» в
+                            «_город_адрес_локация_». </p>
+                        <br>
+                        <h2 class='blue2'><span class="pe-mi-target blue2"></span> &nbsp; Чому треба прийти?</h2>
+                        <p> На мероприятии наш эксперт представит модельный ряд смартфонов ZTE, который будет
+                            поставляться в Украину
+                            с октября 2016г., ознакомит с преимуществами товара для конечного потребителя.
+                            <a name="anchor2"></a>
+                            Также мы представим коммерческие условия поставок ассортимента смартфонов ZTE и планы
+                            поставок,
+                            ознакомим с медипланом рекламных активностей бренда ZTE в 4ом квартале 2016г. Также вы
+                            сможете обсудить
+                            дальнейшее сотрудничество по бренду ZTE с руководителями RadioLine и вашим ведущим
+                            менеджером.
+                        </p>
 
-                        <div class="form-group reg-body__email">
-                            <label for="InputUserEmail" class="control-label col-sm-3"
-                                   class="control-label col-xs-2">E-mail:</label>
-                            <div class="col-sm-9">
-                                <input type="email" id="InputUserEmail" class="form-control" ng-model="user.email"
-                                       name="UserEmail" required>
-                                <div class="help-block" ng-messages="RegForm.UserEmail.$error">
-                                    <p ng-message="required">Поле email необхідно заповнити.</p>
-                                    <p ng-message="email">Введіть коректну email адресу.</p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group reg-body__tel">
-                            <label for="InputUserTel" class="control-label col-sm-3">Телефон:</label>
-                            <div class="col-sm-9">
-                                <input type="tel" id="InputUserTel" class="form-control" ng-model="user.tel"
-                                       name="UserPhone"
-                                       placeholder="Введіть телефон" ng-required="true" ui-mask="+38(999)999-99-99"
-                                       ui-mask-placeholder ui-mask-placeholder-char="_">
-                                <div class="help-block" ng-messages="RegForm.UserPhone.$error">
-                                    <p ng-message="required"># телефону необхідно заповнити.</p>
-                                    <p ng-message="pattern"># телефону не вірний.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group reg-body__position">
-                            <label for="InputUserPosition" class="control-label col-sm-3">Посада:</label>
-                            <div class="col-sm-9">
-
-                                <select class="form-control with-search " id="InputUserPosition" select-picker
-                                        data-live-search="true" name="UserPosition"
-                                        title="Виберіть вашу посаду" ng-model="selectedPosition"
-                                        ng-options="c.Name for c in positions" required>
-                                </select>
-                                <div class="help-block" ng-messages="RegForm.UserPosition.$error">
-                                    <p ng-message="required">Посаду необхідно заповнити.</p>
-                                </div>
-                                <!--{{selectedPosition}}-->
-                            </div>
-                        </div>
-
-                        <div class="form-group reg-body__place">
-                            <label for="InputUserPlace" class="control-label col-sm-3">Звідки Ви?:</label>
-                            <div class="col-sm-9">
-
-                                <select class="form-control with-search " id="InputUserPlace" select-picker
-                                        data-live-search="true" name="UserPosition"
-                                        title="Виберіть ваш населений пункт" ng-model="selectedPosition"
-                                        ng-options="c.Settlement for c in places" required>
-                                </select>
-                                <div class="help-block" ng-messages="RegForm.UserPosition.$error">
-                                    <p ng-message="required">Місце знаходження необхідно заповнити.</p>
-                                </div>
-                                <!--{{selectedPosition}}-->
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                    <div class="reg-footer">
-                        <div class="col-xs-offset-2 col-sm-9">
-                            <button type="submit" class="btn btn-primary">Регистрация</button>
-                        </div>
-
-                        <br><br>
-                        <h2><span class="pe-mi-ways blue2"></span> &nbsp; <a name="anchor" class='blue2'>Де і коли?</a>
+                        <br>
+                        <!--Спикеры -->
+                        <h2><span class="pe-mi-microphone-2 blue2"></span> &nbsp; <a name="anchor3" class='blue2'>Доповідачі:</a>
                         </h2>
-                        <p>25.10.2016 / 12:00 м. ДНІПРО, вул. ТРОЇЦЬКА, 12А, ГОТЕЛЬ REIKARTZ</p>
-                        <p>ДОВІДКИ ЗА ТЕЛЕФОНОМ: +38 (067) 327 6 237, АБО У ВАШОГО МЕНЕДЖЕРА "RadioLine"</p>
+                        <div style="display: table; margin: 0 auto; text-align: center;">
+                            <div class="speaker-col">
+                                <div class="speaker-info">
+                                    <div class="speaker-photo"><img src="assets/img/speaker-01.jpg" border="0" alt=""/>
+                                    </div>
+                                    <div class="speaker-contacts"></div>
+                                    <h3>Доніч Максим</h3>
+                                    <p class="speaker-contacts">Директор з продажів ZTE Mobile Україна</p></div>
+                            </div>
+                            <div class="speaker-col">
+                                <div class="speaker-info">
+                                    <div class="speaker-photo"><img src="assets/img/speaker-02.jpg" border="0" alt=""/>
+                                    </div>
+                                    <div class="speaker-contacts"></div>
+                                    <h3>Радченко Володимир</h3>
+                                    <p class="speaker-contacts">Керівник напрямку ZTE (Radioline)</p></div>
+                            </div>
+                            <div class="speaker-col">
+                                <div class="speaker-info">
+                                    <div class="speaker-photo"><img src="assets/img//speaker-03.jpg" border="0" alt=""/>
+                                    </div>
+                                    <div class="speaker-contacts"></div>
+                                    <h3>Каверін Юрій</h3>
+                                    <p class="speaker-contacts">Комерційний директор (Radioline)</p></div>
+                            </div>
+                            <div class="speaker-col">
+                                <div class="speaker-info">
+                                    <div class="speaker-photo"><img src="assets/img/speaker-04.jpg" border="0" alt=""/>
+                                    </div>
+                                    <div class="speaker-contacts"></div>
+                                    <h3>Гаєвський Михайло</h3>
+                                    <p class="speaker-contacts">Тренер з продуктів ZTE</p></div>
+                            </div>
+
+                        </div>
+                        <!--/ Спикеры -->
+
+                        <h2 class='blue2'><span class="pe-mi-board blue2"></span> &nbsp; Програма конференції:</h2>
+                        <p>12:00-12:15 &nbsp; Вступне слово Керівника мобільного підрозділу ZTE в Україні.</p>
+                        <p>12:15-12:30 &nbsp; Історія бренду ZTE.</p>
+                        <p>12:30-13:30 &nbsp; Презентація модельного ряду смартфонів ZTE.</p>
+                        <p>13:30-13:45 &nbsp; Кофе-брейк.</p>
+                        <p>13:45-14:30 &nbsp; Аксесуари до смартфонів ZTE.</p>
+                        <p>14:30-15:00 &nbsp; Преваги співпраці з нами по бренду ZTE.</p>
+                        <p>15:00-15:15 &nbsp; Програма рекламного просування ZTE в Україні, маркетингова підтримка
+                            партнерів
+                            незалежного роздрібу.</p>
+                        <a name="anchor4"></a>
+                        <p>15:15-16:00 &nbsp; Кофе-брейк. Спілкування з працівниками RadioLine.</p>
+
+                        <br>
+                        <h2><span class="pe-mi-id blue2"></span> &nbsp; <a name="anchor5"
+                                                                           class='blue2'>Зареєструватися:</a></h2>
+                        <hr class='blue'>
+
+
+                        <div style="text-align: center;">
+                            <div class="form-group reg-body__username">
+                                <label for="InputUserName" class="control-label col-sm-3">ПІБ:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="InputUserName" class="form-control" name="UserName"
+                                           placeholder="Прізвище ім'я по-батькові"
+                                           ng-model="user.fullname" required>
+                                    <div class="help-block" ng-messages="RegForm.UserName.$error">
+                                        <p ng-message="required">Прізвище, ім'я та по-батькові необхідно заповнити.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group reg-body__company">
+                                <label for="InputUserCompany" class="control-label col-sm-3">Компанія:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="InputUserCompany" class="form-control"
+                                           ng-model="user.company"
+                                           name="UserCompany" placeholder="Назва компанії" required>
+                                    <div class="help-block" ng-messages="RegForm.UserCompany.$error">
+                                        <p ng-message="required">Назву компанії необхідно заповнити.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group reg-body__email">
+                                <label for="InputUserEmail" class="control-label col-sm-3"
+                                       class="control-label col-xs-2">E-mail:</label>
+                                <div class="col-sm-9">
+                                    <input type="email" id="InputUserEmail" class="form-control" ng-model="user.email"
+                                           name="UserEmail" required>
+                                    <div class="help-block" ng-messages="RegForm.UserEmail.$error">
+                                        <p ng-message="required">Поле email необхідно заповнити.</p>
+                                        <p ng-message="email">Введіть коректну email адресу.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group reg-body__tel">
+                                <label for="InputUserTel" class="control-label col-sm-3">Телефон:</label>
+                                <div class="col-sm-9">
+                                    <input type="tel" id="InputUserTel" class="form-control" ng-model="user.tel"
+                                           name="UserPhone"
+                                           placeholder="Введіть телефон" ng-required="true" ui-mask="+38(999)999-99-99"
+                                           ui-mask-placeholder ui-mask-placeholder-char="_">
+                                    <div class="help-block" ng-messages="RegForm.UserPhone.$error">
+                                        <p ng-message="required"># телефону необхідно заповнити.</p>
+                                        <p ng-message="pattern"># телефону не вірний.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group reg-body__position">
+                                <label for="InputUserPosition" class="control-label col-sm-3">Посада:</label>
+                                <div class="col-sm-9">
+
+                                    <select class="form-control with-search " id="InputUserPosition" select-picker
+                                            data-live-search="true" name="UserPosition"
+                                            title="Виберіть вашу посаду" ng-model="selectedPosition"
+                                            ng-options="c.Name for c in positions" required>
+                                    </select>
+                                    <div class="help-block" ng-messages="RegForm.UserPosition.$error">
+                                        <p ng-message="required">Посаду необхідно заповнити.</p>
+                                    </div>
+                                    <!--{{selectedPosition}}-->
+                                </div>
+                            </div>
+
+                            <div class="form-group reg-body__place">
+                                <label for="InputUserPlace" class="control-label col-sm-3">Звідки Ви?:</label>
+                                <div class="col-sm-9">
+
+                                    <select class="form-control with-search " id="InputUserPlace" select-picker
+                                            data-live-search="true" name="UserPosition"
+                                            title="Виберіть ваш населений пункт" ng-model="selectedPosition"
+                                            ng-options="c.Settlement for c in places" required>
+                                    </select>
+                                    <div class="help-block" ng-messages="RegForm.UserPosition.$error">
+                                        <p ng-message="required">Місце знаходження необхідно заповнити.</p>
+                                    </div>
+                                    <!--{{selectedPosition}}-->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class='brown' style=" height: 2px; max-width: 980px; margin: auto;"></div>
-                <div id="footer">
+                <div id="footer" class="reg-footer">
+                    <div class="col-xs-offset-2 col-sm-9">
+                        <button type="submit" class="btn btn-primary">Регистрация</button>
+                    </div>
+
                     <!-- Информер погоды города Х-->
                     <div id="cont_db6ea766d3a210870ab91febc43df63d">
                         <script type="text/javascript" async
