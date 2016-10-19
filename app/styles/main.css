@@ -1,1 +1,14 @@
-body { padding-top: 0px; }
+body {
+
+}
+
+nav {
+    /*max-width: 980px;*/
+    margin: auto;
+    right: 0;
+    left: 0;
+}
+.navbar-nav{
+    float: right;
+    /*padding-right: 120px;*/
+}

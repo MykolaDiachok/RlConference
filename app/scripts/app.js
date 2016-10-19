@@ -16,12 +16,18 @@
 
 
     angular
-        .module('regapp', ['ngMessages', 'firebase', 'ui.mask', 'ngMaterial'])
-        .factory("Auth", ["$firebaseAuth",
+        .module('regapp', ['ui.mask', 'ngMessages', 'ngMaterial', 'firebase'])
+
+        .factory('Auth', ['$firebaseAuth',
             function ($firebaseAuth) {
                 return $firebaseAuth();
             }])
-        .controller('UserRegCtrl', ['$scope', '$firebaseAuth', '$firebaseObject', '$firebaseArray', '$location', '$timeout', '$q', function ($scope, $firebaseAuth, $firebaseObject, $firebaseArray, $location, $timeout, $q) {
+        .factory('Places',['$firebaseArray',function ($firebaseArray) {
+            var refPlaces = firebase.database().ref().child('Places');
+            // $scope.places = $firebaseArray(refPlaces);
+            return $firebaseArray(refPlaces);
+        }])
+        .controller('UserRegCtrl', ['$scope', '$firebaseAuth', '$firebaseObject', '$firebaseArray', '$location', 'Places', function ($scope, $firebaseAuth, $firebaseObject, $firebaseArray, $location,Places) {
 
             $scope.ph_numbr = /^(\+?(\d{1}|\d{2}|\d{3})[- ]?)?\d{3}[- ]?\d{3}[- ]?\d{4}$/;
             $scope.clientid = $location.search()['clientid'];
@@ -47,10 +53,10 @@
             var refpositions = firebase.database().ref().child("positions");
             $scope.positions = $firebaseArray(refpositions);
 
-            var refPlaces = firebase.database().ref().child("Places");
-            $scope.places = $firebaseArray(refPlaces);
+            $scope.selectedplace=undefined;
+            $scope.places = Places;
 
-            console.log($scope.positions);
+            console.log($scope.places);
 
 
         }]).config(function ($locationProvider) {

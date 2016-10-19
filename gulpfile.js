@@ -9,6 +9,7 @@ var minify = require('gulp-minify-css');
 var useref = require('gulp-useref');
 var cssnano = require('gulp-cssnano');
 var imagemin = require('gulp-imagemin');
+var cache = require('gulp-cache');
 var del = require('del');
 
 // gulp.task('js', function(){
@@ -35,7 +36,9 @@ gulp.task('useref', function(){
 
 gulp.task('images', function(){
     return gulp.src('app/images/**/*.+(png|jpg|gif|svg)')
-        .pipe(imagemin())
+        .pipe(cache(imagemin({
+            interlaced: true
+        })))
         .pipe(gulp.dest('public/images'))
 });
 
@@ -48,5 +51,5 @@ gulp.task('clean:dist', function() {
     return del.sync('public');
 })
 
-gulp.task('default',['useref','images','fonts'],function(){
+gulp.task('default',['clean:dist','useref','images','fonts'],function(){
 });
