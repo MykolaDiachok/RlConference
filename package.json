@@ -29,6 +29,7 @@
     "angularfire": "^2.0.2",
     "bootstrap": "^3.3.7",
     "bootstrap-modal": "^2.0.0",
+    "clientjs": "^0.1.11",
     "del": "^2.2.2",
     "firebase": "^3.5.0",
     "gulp": "^3.9.1",

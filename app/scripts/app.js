@@ -13,24 +13,64 @@
     };
     firebase.initializeApp(config);
 
-
+    function ReturnEmptyObjectFireBase(data)
+    {
+        if(typeof(data) == 'undefined' || data === null)
+        {
+            return 'none';
+        }
+        return data;
+    }
 
     angular
-        .module('regapp', ['ui.mask', 'ngMessages', 'ngMaterial', 'firebase'])
+        .module('regapp', ['ui.mask', 'ngMessages', 'firebase'])
 
-        .factory('Auth', ['$firebaseAuth',
-            function ($firebaseAuth) {
-                return $firebaseAuth();
-            }])
-        .factory('Places',['$firebaseArray',function ($firebaseArray) {
-            var refPlaces = firebase.database().ref().child('Places');
-            // $scope.places = $firebaseArray(refPlaces);
-            return $firebaseArray(refPlaces);
-        }])
-        .controller('UserRegCtrl', ['$scope', '$firebaseAuth', '$firebaseObject', '$firebaseArray', '$location', 'Places', function ($scope, $firebaseAuth, $firebaseObject, $firebaseArray, $location,Places) {
+        .controller('UserRegCtrl', ['$scope', '$firebaseAuth', '$firebaseObject', '$firebaseArray', '$location', function ($scope, $firebaseAuth, $firebaseObject, $firebaseArray, $location) {
 
+            var client = new ClientJS();
+            var clientinfo = {
+                OS:ReturnEmptyObjectFireBase(client.getOS()),
+                OSVersion:ReturnEmptyObjectFireBase(client.getOSVersion()),
+                UserAgent:ReturnEmptyObjectFireBase(client.getUserAgent()),
+                Browser:ReturnEmptyObjectFireBase(client.getBrowser()),
+                BrowserVersion:ReturnEmptyObjectFireBase(client.getBrowserVersion()),
+                BrowserMajorVersion:ReturnEmptyObjectFireBase(client.getBrowserMajorVersion()),
+                Device:ReturnEmptyObjectFireBase(client.getDevice()),
+                DeviceType:ReturnEmptyObjectFireBase(client.getDeviceType()),
+                DeviceVendor:ReturnEmptyObjectFireBase(client.getDeviceVendor()),
+                CPU:ReturnEmptyObjectFireBase(client.getCPU()),
+                TimeZone:ReturnEmptyObjectFireBase(client.getTimeZone()),
+                Language:ReturnEmptyObjectFireBase(client.getLanguage()),
+                SystemLanguage:ReturnEmptyObjectFireBase(client.getSystemLanguage())
+
+        };
+            console.log(client.getBrowser());
+            console.log(client);
+
+            $scope.user = {};
             $scope.ph_numbr = /^(\+?(\d{1}|\d{2}|\d{3})[- ]?)?\d{3}[- ]?\d{3}[- ]?\d{4}$/;
             $scope.clientid = $location.search()['clientid'];
+            $scope.dataid = $location.search()['dataid'];
+            var tempdate = new Date();
+            $scope.ref = firebase.database().ref();
+            var reffoo1 = $scope.ref.child("logins");
+            var userreginfo = {
+                clientid:ReturnEmptyObjectFireBase($scope.clientid),
+                dataid:ReturnEmptyObjectFireBase($scope.dataid)
+            };
+            var list = $firebaseArray(reffoo1);
+            list.$add(
+                {
+                    DateTme:tempdate.toISOString(),
+                    UserIdInfo:userreginfo,
+                    UserInfo:clientinfo
+                }).then(function(ref) {
+                var id = ref.key;
+                console.log("added record with id " + id);
+                list.$indexFor(id); // returns location in the array
+            });
+
+
 
             //const rootRef = firebase.database().ref().child('angular');
             //const ref = rootRef.child('object');
@@ -44,19 +84,38 @@
                 console.error("Authentication failed:", error);
             });
 
-            var arrayClients = firebase.database().ref().child("clients");
-            var refclients = $firebaseArray(arrayClients);
+            // var arrayClients = $firebaseArray(firebase.database().ref().child("clients"));
+            // var refclient = $firebaseObject(arrayClients);
             $scope.visibleCtrl = true;
-            var idCurClient = refclients.$indexFor($scope.clientid);
+            //var idCurClient = refclients.$indexFor($scope.clientid);
 
 
-            var refpositions = firebase.database().ref().child("positions");
+            var refpositions = $scope.ref.child("positions");
             $scope.positions = $firebaseArray(refpositions);
 
-            $scope.selectedplace=undefined;
-            $scope.places = Places;
 
-            console.log($scope.places);
+
+
+
+            $scope.RegSubmit = function () {
+                var refreg = $scope.ref.child("registration");
+
+                var listReg = $firebaseArray(refreg);
+                listReg.$add(
+                    {
+                        clientid:$scope.clientid,
+                        datetime:tempdate.toISOString(),
+                        dataid:$scope.dataid,
+                        user:$scope.user
+                    }).then(function(ref) {
+                    var id = ref.key;
+                    console.log("added reg user with id " + id);
+                    listReg.$indexFor(id); // returns location in the array
+                });
+                    //alert($scope.user.fullname);
+            };
+
+            // console.log($scope.places);
 
 
         }]).config(function ($locationProvider) {

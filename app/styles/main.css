@@ -8,7 +8,101 @@ nav {
     right: 0;
     left: 0;
 }
-.navbar-nav{
+.navbar-nav {
+
     float: right;
-    /*padding-right: 120px;*/
+    font-size: medium;
+
 }
+
+.wrapper-zte {
+    width: 100%;
+    padding-top: 50px;
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    right: 0;
+}
+
+
+
+.navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+    margin: auto;
+    max-width: 980px;
+}
+
+.navbar-brand {
+
+    padding-left: 30px;
+
+}
+
+.container {
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.buton2 {
+    background-color: #fff;
+    color: #008fd5;
+    line-height: 35px;
+    border: none;
+    border-radius: 7px;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+#branding {
+    width: 100%;
+    left: 0;
+    position: fixed;
+    height: 100%;
+    background-image:url(../images/AXON.png);
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    z-index: 0;
+}
+
+.rllogo {
+    max-width: 980px;
+    margin: auto;
+    background-color: #fff;
+    height: 70px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.speaker-col {
+    float: left;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 980px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 980px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 100%;
+    }
+}
+

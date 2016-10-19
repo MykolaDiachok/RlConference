@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>Конференція- "В мене є ZTE!"</title>
-
+    <link rel="shortcut icon" type="image/ico" href="images/favicon.ico"/>
 
     <!--build:css css/vendor.min.css-->
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -15,14 +15,15 @@
     <!--endbuild-->
 
     <!--build:css css/styles.min.css-->
+    <link rel="stylesheet" href="styles/pe-media-icons.css">
+    <link rel="stylesheet" href="styles/registation.css">
     <link rel="stylesheet" href="styles/main.css">
-    <!--<link rel="stylesheet" href="styles/pe-media-icons.css">-->
-    <!--<link rel="stylesheet" href="styles/registation.css">-->
     <!--endbuild-->
 
 </head>
 <body ng-app="regapp">
 <!-- ZTE Axon 7  -->
+<div id="branding"></div>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -41,31 +42,18 @@
         </div>
     </div>
 </nav>
-<!--<nav class="navbar navbar-default divide-nav navbar-fixed-top" role="navigation">-->
-<!--<div class="container">-->
-<!--<div class="collapse navbar-collapse collapse-buttons">-->
-<!--<form class="navbar-form navbar-left" role="search">-->
-<!--<images class='mobnone' src="assets/images/zte-logo.png" border="0"-->
-<!--style="padding-left: 30px;"/>-->
-<!--<span class='menu'>-->
-<!--<a href="#anchor1">Мета</a> &nbsp;&nbsp;-->
-<!--<a href="#anchor2">Доповідачі</a> &nbsp;&nbsp;-->
-<!--<a href="#anchor3">Розклад</a> &nbsp;&nbsp;-->
-<!--<a href="#anchor4">Реєстрація</a> &nbsp;&nbsp;-->
-<!--<a href="#anchor5">Контакти</a></span>-->
-<!--&lt;!&ndash;/ Конец фиксации верхнего меню &ndash;&gt;-->
-<!--</form>-->
-<!--</div>-->
-<!--</div>-->
-<!--</nav>-->
+
 <!-- / ZTE Axon 7  -->
 
 <div class="wrapper-zte">
     <div class="container">
+        <div class="rllogo"><img src="images/logo_rl.png" border="0" style="padding-left: 0px;"
+                                 data-pin-nopin="true"><br><span style="font-size: 1.3em;">П Р Е З Е Н Т У Є</span>
+        </div>
         <div class="reg-page" ng-controller="UserRegCtrl as crtl">
 
 
-            <form name="RegForm" class="form-horizontal" ng-if="visibleCtrl" ng-cloak>
+            <form name="RegForm" class="form-horizontal" ng-if="visibleCtrl" ng-cloak ng-submit="RegSubmit()">
                 <!--<nav class="navbar-lower">-->
                 <!--<div class="container" id="branding"></div>-->
                 <!--</nav>-->
@@ -75,8 +63,9 @@
                         <h1>Конференція - "В мене є <span style="color: #59c0ff;">ZTE</span> !"</h1>
                         <h2>Дніпро, вул. Троїцька, 12А, готель Reikartz </h2>
                         <h1>25.10.2016 / 12:00</h1>
-                        <div style=" text-align: center; "><a name="anchor1"></a><a href="#anchor4" type="buton"
-                                                                                    class="buton2">ЗАРЕЄСТРУВАТИСЯ</a>
+                        <div style="text-align: center;margin-top: 30px;"><a name="anchor1"></a><a href="#anchor4"
+                                                                                                   type="buton"
+                                                                                                   class="buton2">ЗАРЕЄСТРУВАТИСЯ</a>
                         </div>
                     </div>
                 </div>
@@ -122,7 +111,7 @@
                             </div>
                             <div class="speaker-col">
                                 <div class="speaker-info">
-                                    <div class="speaker-photo"><img src="images//speaker-03.jpg" border="0" alt=""/>
+                                    <div class="speaker-photo"><img src="images/speaker-03.jpg" border="0" alt=""/>
                                     </div>
                                     <div class="speaker-contacts"></div>
                                     <h3>Каверін Юрій</h3>
@@ -240,17 +229,26 @@
                             <div class="form-group reg-body__place">
                                 <label for="InputUserPlace" class="control-label col-sm-3">Звідки Ви?:</label>
                                 <div class="col-sm-9">
-
-                                    <select class="form-control with-search " id="InputUserPlace" select-picker
-                                            data-live-search="true" name="UserPosition"
-                                            title="Виберіть ваш населений пункт" ng-model="selectedPosition"
-                                            ng-options="c.Settlement for c in places" required>
-                                    </select>
-                                    <div class="help-block" ng-messages="RegForm.UserPosition.$error">
+                                    <input type="text" id="InputUserPlace" class="form-control"
+                                           ng-model="user.place"
+                                           name="UserPlace" placeholder="Місце знаходження" required>
+                                    <div class="help-block" ng-messages="RegForm.UserPlace.$error">
                                         <p ng-message="required">Місце знаходження необхідно заповнити.</p>
                                     </div>
-                                    <!--{{selectedPosition}}-->
                                 </div>
+                                <!--<label for="InputUserPlace" class="control-label col-sm-3">Звідки Ви?:</label>-->
+                                <!--<div class="col-sm-9">-->
+
+                                <!--<select class="form-control with-search " id="InputUserPlace" select-picker-->
+                                <!--data-live-search="true" name="UserPosition"-->
+                                <!--title="Виберіть ваш населений пункт" ng-model="selectedPosition"-->
+                                <!--ng-options="c.Settlement for c in places" required>-->
+                                <!--</select>-->
+                                <!--<div class="help-block" ng-messages="RegForm.UserPosition.$error">-->
+                                <!--<p ng-message="required">Місце знаходження необхідно заповнити.</p>-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;{{selectedPosition}}&ndash;&gt;-->
+                                <!--</div>-->
                             </div>
 
                             <div class="col-xs-offset-2 col-sm-9">
@@ -271,10 +269,10 @@
 
 
                     <!-- Информер погоды города Х-->
-                    <div id="cont_db6ea766d3a210870ab91febc43df63d">
-                        <script type="text/javascript" async
-                                src="https://www.pogoda.com/wid_loader/db6ea766d3a210870ab91febc43df63d"></script>
-                    </div>
+                    <!--<div id="cont_db6ea766d3a210870ab91febc43df63d">-->
+                    <!--<script type="text/javascript" async-->
+                    <!--src="https://www.pogoda.com/wid_loader/db6ea766d3a210870ab91febc43df63d"></script>-->
+                    <!--</div>-->
                     <!-- / Конец информера погоды города Х-->
 
                     <!-- Карта Google -->
@@ -305,7 +303,8 @@
 <script src="../node_modules/angular-route/angular-route.min.js"></script>
 <script src="../node_modules/angular-aria/angular-aria.min.js"></script>
 <script src="../node_modules/angular-animate/angular-animate.min.js"></script>
-<script src="../node_modules/angular-material/angular-material.min.js"></script>
+<script src="../node_modules/clientjs/dist/client.min.js"></script>
+<!--<script src="../node_modules/angular-material/angular-material.min.js"></script>-->
 <!-- Firebase -->
 <script src="../node_modules/firebase/firebase.js"></script>
 <!-- AngularFire -->
@@ -314,7 +313,6 @@
 
 <!--build:js js/main.min.js -->
 <script src="scripts/app.js"></script>
-<!--<script src="scripts/stickyeah.js"></script>-->
 <!-- endbuild -->
 
 </body>
