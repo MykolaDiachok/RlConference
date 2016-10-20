@@ -88,6 +88,14 @@ nav {
     padding-bottom: 15px;
 }
 
+.help-block {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #999;
+    text-align: left;
+}
+
 @media (min-width: 1200px) {
     .container {
         max-width: 980px;

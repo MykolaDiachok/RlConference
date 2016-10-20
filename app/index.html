@@ -65,7 +65,7 @@
                         <h1>25.10.2016 / 12:00</h1>
                         <div style="text-align: center;margin-top: 30px;"><a name="anchor1"></a><a href="#anchor4"
                                                                                                    type="buton"
-                                                                                                   class="buton2">ЗАРЕЄСТРУВАТИСЯ</a>
+                                                                                                   class="buton2" ng-hide="HideRegForm">ЗАРЕЄСТРУВАТИСЯ</a>
                         </div>
                     </div>
                 </div>
@@ -151,108 +151,164 @@
                         <p>15:15-16:00 &nbsp; Кофе-брейк. Спілкування з працівниками RadioLine.</p>
 
                         <br>
-                        <h2><span class="pe-mi-id blue2"></span> &nbsp; <a name="anchor5"
-                                                                           class='blue2'>Зареєструватися:</a></h2>
-                        <hr class='blue'>
+                        <div ng-hide="HideRegForm">
+                            <h2><span class="pe-mi-id blue2"></span> &nbsp; <a name="anchor5"
+                                                                               class='blue2'>Зареєструватися:</a></h2>
+                            <hr class='blue'>
+                            <div style="text-align: center;">
 
 
-                        <div style="text-align: center;">
-
-                            <div class="form-group reg-body__username">
-                                <label for="InputUserName" class="control-label col-sm-3">ПІБ:</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="InputUserName" class="form-control" name="UserName"
-                                           placeholder="Прізвище ім'я по-батькові"
-                                           ng-model="user.fullname" required>
-                                    <div class="help-block" ng-messages="RegForm.UserName.$error">
-                                        <p ng-message="required">Прізвище, ім'я та по-батькові необхідно заповнити.</p>
+                                <div class="form-group reg-body__username">
+                                    <label for="InputUserName" class="control-label col-sm-2">ПІБ:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="InputUserName" class="form-control" name="UserName"
+                                               placeholder="Прізвище ім'я по-батькові"
+                                               ng-model="user.fullname" required>
+                                        <div class="help-block" ng-messages="RegForm.UserName.$error">
+                                            <p ng-message="required">Прізвище, ім'я та по-батькові необхідно
+                                                заповнити.</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group reg-body__company">
-                                <label for="InputUserCompany" class="control-label col-sm-3">Компанія:</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="InputUserCompany" class="form-control"
-                                           ng-model="user.company"
-                                           name="UserCompany" placeholder="Назва компанії" required>
-                                    <div class="help-block" ng-messages="RegForm.UserCompany.$error">
-                                        <p ng-message="required">Назву компанії необхідно заповнити.</p>
+                                <div class="form-group reg-body__company">
+                                    <label for="InputUserCompany" class="control-label col-sm-2">Компанія:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="InputUserCompany" class="form-control"
+                                               ng-model="user.company"
+                                               name="UserCompany" placeholder="Назва компанії" required>
+                                        <div class="help-block" ng-messages="RegForm.UserCompany.$error">
+                                            <p ng-message="required">Назву компанії необхідно заповнити.</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group reg-body__email">
-                                <label for="InputUserEmail" class="control-label col-sm-3"
-                                       class="control-label col-xs-2">E-mail:</label>
-                                <div class="col-sm-9">
-                                    <input type="email" id="InputUserEmail" class="form-control" ng-model="user.email"
-                                           name="UserEmail" required>
-                                    <div class="help-block" ng-messages="RegForm.UserEmail.$error">
-                                        <p ng-message="required">Поле email необхідно заповнити.</p>
-                                        <p ng-message="email">Введіть коректну email адресу.</p>
+                                <div class="form-group reg-body__email">
+                                    <label for="InputUserEmail" class="control-label col-sm-2"
+                                           class="control-label col-xs-2">E-mail:</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" id="InputUserEmail" class="form-control"
+                                               ng-model="user.email"
+                                               name="UserEmail" required>
+                                        <div class="help-block" ng-messages="RegForm.UserEmail.$error">
+                                            <p ng-message="required">Поле email необхідно заповнити.</p>
+                                            <p ng-message="email">Введіть коректну email адресу.</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
 
-                            <div class="form-group reg-body__tel">
-                                <label for="InputUserTel" class="control-label col-sm-3">Телефон:</label>
-                                <div class="col-sm-9">
-                                    <input type="tel" id="InputUserTel" class="form-control" ng-model="user.tel"
-                                           name="UserPhone"
-                                           placeholder="Введіть телефон" ng-required="true" ui-mask="+38(999)999-99-99"
-                                           ui-mask-placeholder ui-mask-placeholder-char="_">
-                                    <div class="help-block" ng-messages="RegForm.UserPhone.$error">
-                                        <p ng-message="required"># телефону необхідно заповнити.</p>
-                                        <p ng-message="pattern"># телефону не вірний.</p>
+                                <div class="form-group reg-body__tel">
+                                    <label for="InputUserTel" class="control-label col-sm-2">Телефон:</label>
+                                    <div class="col-sm-9">
+                                        <input type="tel" id="InputUserTel" class="form-control" ng-model="user.tel"
+                                               name="UserPhone"
+                                               placeholder="Введіть телефон" ng-required="true"
+                                               ui-mask="+38(999)999-99-99"
+                                               ui-mask-placeholder ui-mask-placeholder-char="_">
+                                        <div class="help-block" ng-messages="RegForm.UserPhone.$error">
+                                            <p ng-message="required"># телефону необхідно заповнити.</p>
+                                            <p ng-message="pattern"># телефону не вірний.</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group reg-body__position">
-                                <label for="InputUserPosition" class="control-label col-sm-3">Посада:</label>
-                                <div class="col-sm-9">
+                                <div class="form-group reg-body__position">
+                                    <label for="InputUserPosition" class="control-label col-sm-2">Посада:</label>
+                                    <div class="col-sm-9">
 
-                                    <select class="form-control with-search " id="InputUserPosition" select-picker
-                                            data-live-search="true" name="UserPosition"
-                                            title="Виберіть вашу посаду" ng-model="selectedPosition"
-                                            ng-options="c.Name for c in positions" required>
-                                    </select>
-                                    <div class="help-block" ng-messages="RegForm.UserPosition.$error">
-                                        <p ng-message="required">Посаду необхідно заповнити.</p>
-                                    </div>
-                                    <!--{{selectedPosition}}-->
-                                </div>
-                            </div>
-
-                            <div class="form-group reg-body__place">
-                                <label for="InputUserPlace" class="control-label col-sm-3">Звідки Ви?:</label>
-                                <div class="col-sm-9">
-                                    <input type="text" id="InputUserPlace" class="form-control"
-                                           ng-model="user.place"
-                                           name="UserPlace" placeholder="Місце знаходження" required>
-                                    <div class="help-block" ng-messages="RegForm.UserPlace.$error">
-                                        <p ng-message="required">Місце знаходження необхідно заповнити.</p>
+                                        <select class="form-control with-search " id="InputUserPosition" select-picker
+                                                data-live-search="true" name="UserPosition"
+                                                title="Виберіть вашу посаду" ng-model="selectedPosition"
+                                                ng-options="c.Name for c in positions" required>
+                                        </select>
+                                        <div class="help-block" ng-messages="RegForm.UserPosition.$error">
+                                            <p ng-message="required">Посаду необхідно заповнити.</p>
+                                        </div>
+                                        <!--{{selectedPosition}}-->
                                     </div>
                                 </div>
-                                <!--<label for="InputUserPlace" class="control-label col-sm-3">Звідки Ви?:</label>-->
-                                <!--<div class="col-sm-9">-->
 
-                                <!--<select class="form-control with-search " id="InputUserPlace" select-picker-->
-                                <!--data-live-search="true" name="UserPosition"-->
-                                <!--title="Виберіть ваш населений пункт" ng-model="selectedPosition"-->
-                                <!--ng-options="c.Settlement for c in places" required>-->
-                                <!--</select>-->
-                                <!--<div class="help-block" ng-messages="RegForm.UserPosition.$error">-->
-                                <!--<p ng-message="required">Місце знаходження необхідно заповнити.</p>-->
-                                <!--</div>-->
-                                <!--&lt;!&ndash;{{selectedPosition}}&ndash;&gt;-->
-                                <!--</div>-->
-                            </div>
+                                <div class="form-group reg-body__place">
+                                    <label for="InputUserPlace" class="control-label col-sm-2">Звідки Ви?:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="InputUserPlace" class="form-control"
+                                               ng-model="user.place"
+                                               name="UserPlace" placeholder="Місце знаходження" required>
+                                        <div class="help-block" ng-messages="RegForm.UserPlace.$error">
+                                            <p ng-message="required">Місце знаходження необхідно заповнити.</p>
+                                        </div>
+                                    </div>
+                                    <!--<label for="InputUserPlace" class="control-label col-sm-3">Звідки Ви?:</label>-->
+                                    <!--<div class="col-sm-9">-->
 
-                            <div class="col-xs-offset-2 col-sm-9">
-                                <button type="submit" class="btn btn-primary">Регистрация</button>
+                                    <!--<select class="form-control with-search " id="InputUserPlace" select-picker-->
+                                    <!--data-live-search="true" name="UserPosition"-->
+                                    <!--title="Виберіть ваш населений пункт" ng-model="selectedPosition"-->
+                                    <!--ng-options="c.Settlement for c in places" required>-->
+                                    <!--</select>-->
+                                    <!--<div class="help-block" ng-messages="RegForm.UserPosition.$error">-->
+                                    <!--<p ng-message="required">Місце знаходження необхідно заповнити.</p>-->
+                                    <!--</div>-->
+                                    <!--&lt;!&ndash;{{selectedPosition}}&ndash;&gt;-->
+                                    <!--</div>-->
+                                </div>
+
+                                <div class="col-xs-offset-2 col-sm-9">
+                                    <button type="submit" class="btn btn-primary btn-lg">ЗАРЕЄСТРУВАТИСЯ
+                                    </button>
+
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                         aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title alert alert-success" id="myModalLabel">
+                                                        Реєстрація
+                                                        виконана</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Дякуємо за реєстрацію
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                                                            ng-click="HideForm()">
+                                                        Закрити
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" id="myModalError" tabindex="-1" role="dialog"
+                                         aria-labelledby="myModalErrorLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title alert alert-danger" id="myModalErrorLabel">
+                                                        Виникла проблема реєстрації</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <strong>Вибачте за незручності, в зв'язку з помилкою реєєстрація не
+                                                        виконана, зверніться будь ласка до Вашого менеджера.</strong>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                                                            ng-click="HideForm()">
+                                                        Закрити
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                         <br><br>
