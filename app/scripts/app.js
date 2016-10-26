@@ -44,17 +44,26 @@
     }
 
 
-
     angular
         .module('regapp', ['ui.mask', 'ngMessages', 'firebase'])
 
-        .controller('UserRegCtrl', ['$scope', '$firebaseAuth', '$firebaseObject', '$firebaseArray', '$location', function ($scope, $firebaseAuth, $firebaseObject, $firebaseArray, $location) {
+        .controller('UserRegCtrl', ['$scope', '$firebaseAuth', '$firebaseObject', '$firebaseArray', '$location', '$sce', '$window', function ($scope, $firebaseAuth, $firebaseObject, $firebaseArray, $location, $sce, $window) {
             //var userip = undefined;
 
             $scope.clientid = $location.search()['clientid'];
             $scope.dataid = $location.search()['dataid'];
+
+            if (($scope.clientid)&&($window.ga)){
+                $window.ga('set', 'userId', $scope.clientid); // Set the user ID using signed-in user_id.
+            }
+
             $scope.ref = firebase.database().ref();
+
+
             $scope.HideRegForm = false;
+            $scope.user = {};
+            $scope.ph_numbr = /^(\+?(\d{1}|\d{2}|\d{3})[- ]?)?\d{3}[- ]?\d{3}[- ]?\d{4}$/;
+
             $scope.authObj = $firebaseAuth();
 
             $scope.visibleCtrl = false;
@@ -65,30 +74,30 @@
                 $scope.visibleCtrl = true;
 
                 //$(document).ready(function () {
-                    $.getJSON("https://jsonip.com/?callback=?", function (data) {
-                        console.log(data);
-                        var clientinfo = addLogins(data.ip);
+                $.getJSON("https://jsonip.com/?callback=?", function (data) {
+                    console.log(data);
+                    var clientinfo = addLogins(data.ip);
 
-                        var tempdate = new Date();
+                    var tempdate = new Date();
 
-                        var reffoo1 = $scope.ref.child("logins");
-                        var userreginfo = {
-                            clientid: ReturnEmptyObjectFireBase($scope.clientid),
-                            dataid: ReturnEmptyObjectFireBase($scope.dataid)
-                        };
-                        var list = $firebaseArray(reffoo1);
-                        list.$add(
-                            {
-                                DateTme: tempdate.toISOString(),
-                                logid:ReturnEmptyObjectFireBase($scope.uid),
-                                UserIdInfo: userreginfo,
-                                UserInfo: clientinfo
-                            }).then(function (ref) {
-                            var id = ref.key;
-                            console.log("added record with id " + id);
-                            list.$indexFor(id); // returns location in the array
-                        });
+                    var reffoo1 = $scope.ref.child("logins");
+                    var userreginfo = {
+                        clientid: ReturnEmptyObjectFireBase($scope.clientid),
+                        dataid: ReturnEmptyObjectFireBase($scope.dataid)
+                    };
+                    var list = $firebaseArray(reffoo1);
+                    list.$add(
+                        {
+                            DateTme: tempdate.toISOString(),
+                            logid: ReturnEmptyObjectFireBase($scope.uid),
+                            UserIdInfo: userreginfo,
+                            UserInfo: clientinfo
+                        }).then(function (ref) {
+                        var id = ref.key;
+                        console.log("added record with id " + id);
+                        list.$indexFor(id); // returns location in the array
                     });
+                });
                 //});
 
             }).catch(function (error) {
@@ -96,21 +105,36 @@
             });
 
 
-
-
-
-            $scope.user = {};
-            $scope.ph_numbr = /^(\+?(\d{1}|\d{2}|\d{3})[- ]?)?\d{3}[- ]?\d{3}[- ]?\d{4}$/;
-
-
             //const rootRef = firebase.database().ref().child('angular');
             //const ref = rootRef.child('object');
+            var clients = $scope.ref.child("clients");
+            var conf = $scope.ref.child('conferences');
 
+            if ($scope.clientid) {
 
+                $scope.refclient = $firebaseObject(clients.child($scope.clientid)).$loaded()
+                    .then(function (data) {
+                        var refconf = $firebaseObject(conf.child($scope.dataid)).$loaded().then(function (data) {
+                            //alert('All ok');
+                            // data.$bindTo($scope, 'confinfo');
+                            $scope.confinfo = data;
+                            $scope.confprogram = $firebaseArray(conf.child($scope.dataid).child('programs'));
+                            $scope.googlemapUrl = $sce.trustAsResourceUrl($scope.confinfo.mapsrc);
 
-            // var arrayClients = $firebaseArray(firebase.database().ref().child("clients"));
-            // var refclient = $firebaseObject(arrayClients);
-
+                        })
+                            .catch(function (error) {
+                                $scope.HideRegForm = true;
+                                console.error("Error conference not found:", error);
+                            })
+                    })
+                    .catch(function (error) {
+                        $scope.HideRegForm = true;
+                        console.error("Error client not found:", error);
+                    });
+            }
+            else {
+                $scope.HideRegForm = true;
+            }
             //var idCurClient = refclients.$indexFor($scope.clientid);
 
 
@@ -124,6 +148,7 @@
                 var listReg = $firebaseArray(refreg);
                 listReg.$add(
                     {
+                        logid: ReturnEmptyObjectFireBase($scope.uid),
                         clientid: $scope.clientid,
                         datetime: new Date().toISOString(),
                         dataid: $scope.dataid,
@@ -133,29 +158,18 @@
                     console.log("added reg user with id " + id);
                     listReg.$indexFor(id); // returns location in the array
                     $('#myModal').modal('show');
-                },function (error) {
+                }, function (error) {
                     $('#myModalError').modal('show');
-                    console.log("Error:"+ error.message);
+                    console.log("Error:" + error.message);
                 });
 
                 //alert($scope.user.fullname);
             };
 
-            $('#myModal').on('hidden.bs.modal', function (e) {
-                console.log('Hide');
-                $scope.visibleCtrl = false;
-            });
-            $('#myModalError').on('hidden.bs.modal', function (e) {
-                console.log('Hide error');
-                $scope.visibleCtrl = false;
-            });
-
             $scope.HideForm = function () {
                 console.log('Func Hide');
-                //$scope.visibleCtrl = false;
                 $scope.HideRegForm = true;
             };
-            // console.log($scope.places);
 
 
         }]).config(function ($locationProvider) {

@@ -60,13 +60,14 @@
 
                 <div id="Head" class="reg-windows">
                     <div class="reg-header__info">
-                        <h1>Конференція - "В мене є <span style="color: #59c0ff;">ZTE</span> !"</h1>
-                        <h2>Дніпро, вул. Троїцька, 12А, готель Reikartz </h2>
-                        <h1>25.10.2016 / 12:00</h1>
-                        <div style="text-align: center;margin-top: 30px;"><a name="anchor1"></a><a href="#anchor4"
-                                                                                                   type="buton"
-                                                                                                   class="buton2" ng-hide="HideRegForm">ЗАРЕЄСТРУВАТИСЯ</a>
-                        </div>
+                        <h2>Презентація-конференція "У мене є <span style="color: #59c0ff;">ZTE</span>!"</h2>
+                        <h3><span style="color: #fff; padding-right: 20px; ">{{confinfo.adress}}</span></h3>
+                        <h2>{{confinfo.date}} / {{confinfo.time}}</h2>
+                        <!--<div style="text-align: center;margin-top: 30px;"><a name="anchor1"></a><a href="#anchor4"-->
+                                                                                                   <!--type="buton"-->
+                                                                                                   <!--class="buton2"-->
+                                                                                                   <!--ng-hide="HideRegForm">ЗАРЕЄСТРУВАТИСЯ</a>-->
+                        <!--</div>-->
                     </div>
                 </div>
 
@@ -76,24 +77,15 @@
 
                         <h2 class='blue2'><span class="pe-mi-speaker-1 blue2"></span> &nbsp; ZTE та Radioline
                             презентують</h2>
-                        <p> Уважаемый партнер!
-                            Компания RadioLine, эксклюзивный дистрибьютор смартфонов ZTE в канале независимой розницы,
-                            приглашает
-                            Вас на презентацию-конференцию мирового мобильного бренда ZTE, который будет проводиться
-                            «_дата_» в
-                            «_город_адрес_локация_». </p>
+                        <p> {{confinfo.header}}</p>
                         <br>
-                        <h2 class='blue2'><span class="pe-mi-target blue2"></span> &nbsp; Чому треба прийти?</h2>
-                        <p> На мероприятии наш эксперт представит модельный ряд смартфонов ZTE, который будет
-                            поставляться в Украину
-                            с октября 2016г., ознакомит с преимуществами товара для конечного потребителя.
-                            <a name="anchor2"></a>
-                            Также мы представим коммерческие условия поставок ассортимента смартфонов ZTE и планы
-                            поставок,
-                            ознакомим с медипланом рекламных активностей бренда ZTE в 4ом квартале 2016г. Также вы
-                            сможете обсудить
-                            дальнейшее сотрудничество по бренду ZTE с руководителями RadioLine и вашим ведущим
-                            менеджером.
+                        <h2 class='blue2'><span class="pe-mi-target blue2"></span> &nbsp; ЧОМУ ПОТРІБНО ПРИЙТИ?</h2>
+                        <p> На цьому заході Ви матимете змогу першими ознайомитися з модельним рядом смартфонів ZTE, які
+                            очікуються в Україні наприкінці жовтня. Наш експерт розкриє переваги товару для споживачів,
+                            а Ви, в свою чергу, отримаєте інформацію щодо комерційних переваг роботи з брендом ZTE та
+                            планів поставок. Ми будемо раді презентувати Вам медіаплан рекламних заходів компанії ZTE у
+                            IV кварталі 2016 року. В ході дискусії Ви зможете обговорити подальшу співпрацю по бренду
+                            ZTE з керівниками та провідними менеджерами компанії RadioLine.
                         </p>
 
                         <br>
@@ -137,18 +129,13 @@
                         </div>
                         <!--/ Спикеры -->
 
-                        <h2 class='blue2'><span class="pe-mi-board blue2"></span> &nbsp; Програма конференції:</h2>
-                        <p>12:00-12:15 &nbsp; Вступне слово Керівника мобільного підрозділу ZTE в Україні.</p>
-                        <p>12:15-12:30 &nbsp; Історія бренду ZTE.</p>
-                        <p>12:30-13:30 &nbsp; Презентація модельного ряду смартфонів ZTE.</p>
-                        <p>13:30-13:45 &nbsp; Кофе-брейк.</p>
-                        <p>13:45-14:30 &nbsp; Аксесуари до смартфонів ZTE.</p>
-                        <p>14:30-15:00 &nbsp; Преваги співпраці з нами по бренду ZTE.</p>
-                        <p>15:00-15:15 &nbsp; Програма рекламного просування ZTE в Україні, маркетингова підтримка
-                            партнерів
-                            незалежного роздрібу.</p>
-                        <a name="anchor4"></a>
-                        <p>15:15-16:00 &nbsp; Кофе-брейк. Спілкування з працівниками RadioLine.</p>
+                        <h2 class='blue2'><span class="pe-mi-board blue2"></span> &nbsp; <a name="anchor4">Програма
+                            конференції:</a></h2>
+                        <div>
+                            <ul class="list-unstyled">
+                                <li ng-repeat="p in confprogram"><p>{{p.$value}}</p></li>
+                            </ul>
+                        </div>
 
                         <br>
                         <div ng-hide="HideRegForm">
@@ -187,9 +174,10 @@
                                     <label for="InputUserEmail" class="control-label col-sm-2"
                                            class="control-label col-xs-2">E-mail:</label>
                                     <div class="col-sm-9">
-                                        <input type="email" id="InputUserEmail" class="form-control"
-                                               ng-model="user.email"
-                                               name="UserEmail" required>
+                                        <input id="InputUserEmail"
+                                               class="form-control ng-pristine ng-empty ng-valid-email ng-invalid ng-invalid-required ng-touched"
+                                               ng-model="user.email" name="UserEmail" required=""
+                                               placeholder="Введіть Ваш адрес єлектронної пошти" type="email">
                                         <div class="help-block" ng-messages="RegForm.UserEmail.$error">
                                             <p ng-message="required">Поле email необхідно заповнити.</p>
                                             <p ng-message="email">Введіть коректну email адресу.</p>
@@ -218,12 +206,12 @@
                                     <div class="col-sm-9">
 
                                         <select class="form-control with-search " id="InputUserPosition" select-picker
-                                                data-live-search="true" name="UserPosition"
+                                                data-live-search="true" name="UserPosition" ng-model="user.position"
                                                 title="Виберіть вашу посаду" ng-model="selectedPosition"
-                                                ng-options="c.Name for c in positions" required>
+                                                ng-options="c.Name for c in positions" ng-required="true">
                                         </select>
-                                        <div class="help-block" ng-messages="RegForm.UserPosition.$error">
-                                            <p ng-message="required">Посаду необхідно заповнити.</p>
+                                        <div class="help-block ng-active" ng-messages="RegForm.UserPosition.$error">
+                                            <!-- ngMessage: required --><p ng-message="required" class="ng-scope">Оберіть зі списку Вашу посаду.</p>
                                         </div>
                                         <!--{{selectedPosition}}-->
                                     </div>
@@ -314,8 +302,10 @@
                         <br><br>
                         <h2><span class="pe-mi-ways blue2"></span> &nbsp; <a name="anchor" class='blue2'>Де і коли?</a>
                         </h2>
-                        <p>25.10.2016 / 12:00 м. ДНІПРО, вул. ТРОЇЦЬКА, 12А, ГОТЕЛЬ REIKARTZ</p>
-                        <p>ДОВІДКИ ЗА ТЕЛЕФОНОМ: +38 (067) 327 6 237, АБО У ВАШОГО МЕНЕДЖЕРА "RadioLine"</p>
+                        <address>
+                            <p><strong>{{confinfo.date}} / {{confinfo.time}} {{confinfo.fulladress}}</strong></p>
+                            <p>ЗА ДОВІДКАМИ ЗВЕРТАЙТЕСЯ ДО ВАШОГО МЕНЕДЖЕРА RADIOLINE</p>
+                        </address>
                     </div>
                 </div>
 
@@ -333,11 +323,11 @@
 
                     <!-- Карта Google -->
                     <iframe class="entry_preview_image transparent"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2645.8170556624586!2d35.03913501601699!3d48.46003957925047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9ee939c4c07ea33f!2zUmVpa2FydHog0JTQvdC10L_RgA!5e0!3m2!1sru!2sua!4v1476556159882"
+                            ng-src="{{googlemapUrl}}"
                             width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
                     <!-- Карта Google -->
                     <br>
-                    <b>RadioLine © 2016 &nbsp; +38 (067) 327 6 237</b>
+                    <b>RadioLine © 2016</b>
                     <br>
                 </div>
 
@@ -370,6 +360,17 @@
 <!--build:js js/main.min.js -->
 <script src="scripts/app.js"></script>
 <!-- endbuild -->
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-65129645-4', 'auto');
+    ga('send', 'pageview');
+
+</script>
 
 </body>
 </html>

@@ -96,6 +96,10 @@ nav {
     text-align: left;
 }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
 @media (min-width: 1200px) {
     .container {
         max-width: 980px;
